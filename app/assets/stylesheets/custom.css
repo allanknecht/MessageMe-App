@@ -1,0 +1,13 @@
+@import "semantic-ui";
+
+.chatbox {
+  height: 500px;
+}
+
+.login-button-field {
+  text-align: center;
+}
+
+.middle.aligned.column {
+  text-align: center;
+}

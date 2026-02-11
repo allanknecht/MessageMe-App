@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>MessageMe</title>
+    <%= favicon_link_tag asset_path('mug-saucer-solid-full.svg') %>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,6 +10,13 @@
   </head>
 
   <body>
+    <div class="ui small inverted menu">
+      <div class="ui container">
+        <%= render 'layouts/navigation' %>
+      </div>
+    </div>
+    <div class="ui container">
     <%= yield %>
+  </div>
   </body>
 </html>

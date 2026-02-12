@@ -11,10 +11,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      flash[:notice] = "Welcome to the MessageMe family!"
+      flash[:success] = "Welcome to the MessageMe family!"
       redirect_to root_path
     else
-      flash.now[:alert] = "Something went wrong"
+      flash.now[:error] = "Something went wrong"
       render "new"
     end
   end
@@ -27,10 +27,10 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      flash[:notice] = "Your account was updated successfully"
+      flash[:success] = "Your account was updated successfully"
       redirect_to user_path(@user)
     else
-      flash.now[:alert] = "Something went wrong"
+      flash.now[:error] = "Something went wrong"
       render "edit"
     end
   end
@@ -43,10 +43,10 @@ class UsersController < ApplicationController
     if @user == current_user
       @user.destroy
       session[:user_id] = nil
-      flash[:notice] = "Account deleted successfully"
+      flash[:success] = "Account deleted successfully"
       redirect_to root_path
     else
-      flash[:alert] = "You can only delete your own account"
+      flash[:error] = "You can only delete your own account"
       redirect_to users_path
     end
   end
@@ -60,7 +60,7 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    flash[:alert] = "Something went wrong while trying to find the user"
+    flash[:error] = "Something went wrong while trying to find the user"
     redirect_to users_path
   end
 end

@@ -1,0 +1,23 @@
+<% flash.each do |message_type, message_content| %>
+  <% 
+    # Mapear tipos de flash do Rails para tipos do Semantic UI
+    semantic_type = case message_type.to_s
+    when 'notice'
+      'success'
+    when 'alert'
+      'error'
+    when 'error'
+      'error'
+    when 'success'
+      'success'
+    else
+      message_type.to_s
+    end
+  %>
+  <div class="ui <%= semantic_type %> message transition">
+    <i class="close icon"></i>
+    <div class="header">
+      <%= message_content %>
+    </div>
+  </div>
+<% end %>

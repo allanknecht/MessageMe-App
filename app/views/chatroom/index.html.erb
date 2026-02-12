@@ -6,48 +6,20 @@
 <div class="ui two column stackable grid">
   <div class="twelve wide column">
     <div class="ui fluid raised card chatbox">
-      <div class="content">
+      <div class="content messages-scroll">
         <div class="ui feed">
-          <div class="event">
-            <div class="content">
-              <div class="summary">
-                <a>Elliot Fu</a> added <a>Jenny Hess</a> as a friend
-              </div>
-            </div>
-          </div>
-          <div class="event">
-            <div class="content">
-              <div class="summary">
-                <a>Stevie Feliciano</a> added <a>Elliot Fu</a> as a friend
-              </div>
-            </div>
-          </div>
-          <div class="event">
-            <div class="content">
-              <div class="summary">
-                <a>Helen Troy</a> added <a>Christian Rocha</a> as a friend
-              </div>
-            </div>
-          </div>
-          <div class="event">
-            <div class="content">
-              <div class="summary">
-                <em>Christian Rocha:</em> test message
-              </div>
-            </div>
-          </div>
+          <%= render @messages %>
         </div>
       </div>
       <div class="extra content">
-        <form class="ui reply form">
+        <%= form_with(model: @message, url: message_path, class: "ui reply form") do |f| %>
           <div class="field">
           </div>
           <div class="ui fluid blue icon input">
-            <input type="text" placeholder="Enter a message...">
-
-            <i class="bordered inverted teal edit icon"></i>
+            <%= f.text_field :body, placeholder: "Enter a message..." %>
+            <%= f.button '<i class="bordered inverted teal edit icon"></i>'.html_safe %>
           </div>
-        </form>
+        <% end %>
       </div>
     </div>
 </div>

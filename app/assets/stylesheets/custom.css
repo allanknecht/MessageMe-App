@@ -24,3 +24,9 @@
 .middle.aligned.column {
   text-align: center;
 }
+
+.input {
+  button {
+    display: none;
+  }
+}

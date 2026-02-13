@@ -7,14 +7,12 @@
   <div class="twelve wide column">
     <div class="ui fluid raised card chatbox">
       <div class="content messages-scroll">
-        <div class="ui feed">
+        <div class="ui feed" id="message-container">
           <%= render @messages %>
         </div>
       </div>
       <div class="extra content">
         <%= form_with(model: @message, url: message_path, class: "ui reply form") do |f| %>
-          <div class="field">
-          </div>
           <div class="ui fluid blue icon input">
             <%= f.text_field :body, placeholder: "Enter a message..." %>
             <%= f.button '<i class="bordered inverted teal edit icon"></i>'.html_safe %>

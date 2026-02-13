@@ -1,0 +1,12 @@
+I"#(function() {
+  App.chatroom = App.cable.subscriptions.create("ChatroomChannel", {
+    connected: function() {},
+    disconnected: function() {},
+    received: function(data) {
+      $('#message-container').append(data.mod_message);
+      return scroll_bottom();
+    }
+  });
+
+}).call(this);
+:ET

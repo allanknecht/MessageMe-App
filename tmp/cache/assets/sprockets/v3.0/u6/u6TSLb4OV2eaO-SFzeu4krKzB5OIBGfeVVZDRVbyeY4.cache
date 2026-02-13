@@ -1,0 +1,25 @@
+I"(function() {
+  App.chatroom = App.cable.subscriptions.create("ChatroomChannel", {
+    connected: function() {
+      return console.log("Connected to ChatroomChannel");
+    },
+    disconnected: function() {
+      return console.log("Disconnected from ChatroomChannel");
+    },
+    received: function(data) {
+      console.log("=== RECEIVED CALLBACK TRIGGERED ===");
+      console.log("Received data:", data);
+      console.log("Type of data:", typeof data);
+      console.log("data.foo:", data.foo);
+      if (data.foo) {
+        console.log("Showing alert with:", data.foo);
+        return alert(data.foo);
+      } else {
+        console.error("data.foo is undefined. Data received:", data);
+        return console.error("Keys in data:", Object.keys(data));
+      }
+    }
+  });
+
+}).call(this);
+:ET

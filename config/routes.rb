@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   get "signup", to: "users#new"
   resources :users, except: [:delete]
   post "message", to: "messages#create"
+
+  mount ActionCable.server, at: "/cable"
 end

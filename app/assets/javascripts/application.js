@@ -14,11 +14,38 @@
 //= require jquery
 //= require turbolinks
 //= require semantic-ui
+//= require cable
 //= require_tree .
+
+function scroll_bottom() {
+  if ($('.messages-scroll').length > 0) {
+    $('.messages-scroll').scrollTop($('.messages-scroll')[0].scrollHeight);
+  }
+}
+
+function submit_message() {
+  $('form.ui.reply.form input[type="text"]').on('keydown', function(event) {
+    if (event.keyCode == 13) {
+      event.preventDefault();
+      $(this).closest('form').find('button').click();
+    }
+  });
+}
 
 $(document).on('turbolinks:load', function() {
   $('.ui.dropdown').dropdown();
   $('.message .close').on('click', function() {
     $(this).closest('.message').transition('fade');
   });
+  
+  // Handle message form submission
+  $('form.ui.reply.form').on('ajax:success', function(event, data, status, xhr) {
+    $(this).find('input[type="text"]').val('');
+  });
+  
+  // Enable Enter key to submit message
+  submit_message();
+  
+  // Scroll to bottom on page load
+  scroll_bottom();
 });
